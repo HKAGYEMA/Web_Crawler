@@ -1,11 +1,3 @@
-"""
-A simple-to-use web worker that collects
-website data as it crawls
-
-Author: Mark Boon
-Date: 06/09/2017
-Version: 2.3.1
-"""
 
 import threading
 from urllib.request import urlopen
@@ -44,7 +36,8 @@ class Worker:
                 self.write_file("log.txt", link + "\n")
                 self.report(link)
                 self.crawled.add(link)
-
+                
+                
                 for upper_domain in soup.find_all('a', href=True):
                     joined_link = urljoin(self.base_url, upper_domain['href'])
                     if joined_link not in self.crawled:
